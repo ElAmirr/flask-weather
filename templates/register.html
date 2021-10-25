@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div id="container">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+                {{ form.username.label() }}
+                {{ form.username(class="form-control") }}
+                {{ form.email.label() }}
+                {{ form.email(class="form-control") }}
+                {{ form.password.label() }}
+                {{ form.password(class="form-control") }}
+                {{ form.confirm_password.label() }}
+                {{ form.confirm_password(class="form-control") }}
+                {{ form.submit(class="submit") }}
+                <span>Already Have An Acount?<a href="{{ url_for('login') }}">Login Now</a></span><br><br>
+        </form>
+    </div>
+{% endblock content %}
