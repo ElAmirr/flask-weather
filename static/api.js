@@ -11,7 +11,7 @@ window.addEventListener("load", () => {
         navigator.geolocation.getCurrentPosition(position => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
-        
+
             fetch(`${api.basurl}lat=${lat}&lon=${long}&units=metric&appid=${api.key}`)
                 .then(responce => {
                     return responce.json();
@@ -54,8 +54,6 @@ window.addEventListener("load", () => {
                     }
                 });
             });
-        } else { 
-            document.querySelector('.alert').innerHTML = "Geolocation is not supported by this browser.";
         }
     }); 
 
@@ -83,7 +81,7 @@ function getResults (query) {
 
 
 
-function data (responce, card) {
+function data (responce) {
     console.log(responce);
     let city = document.querySelector('.location .city');
     city.innerText = `${responce.city.name}, ${responce.city.country}`
@@ -103,7 +101,7 @@ function data (responce, card) {
     temp.innerHTML= `${tempFormat(responce.list[0].main.temp)}`;
 
     let defaultTemp = document.querySelector('.current .temp');
-    temp.innerHTML= `${Math.round(responce.list[0].main.temp)}<span>°C</span>`;
+    defaultTemp.innerHTML= `${Math.round(responce.list[0].main.temp)}<span>°C</span>`;
     
     let weather_el = document.querySelector('.current .weather');
     weather_el.innerText = responce.list[0].weather[0].main;
