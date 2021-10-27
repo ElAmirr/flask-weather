@@ -1,7 +1,7 @@
 const api = {
     key: "7d599ce045a697247a327dd3f4029960",
     basurl: "https://pro.openweathermap.org/data/2.5/forecast/hourly?",
-    iconurl: 'http://openweathermap.org/img/wn/'  
+    iconurl: 'http://openweathermap.org/img/wn/' 
 }
 
 window.addEventListener("load", () => {
@@ -11,7 +11,7 @@ window.addEventListener("load", () => {
         navigator.geolocation.getCurrentPosition(position => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
-
+        
             fetch(`${api.basurl}lat=${lat}&lon=${long}&units=metric&appid=${api.key}`)
                 .then(responce => {
                     return responce.json();
@@ -22,7 +22,7 @@ window.addEventListener("load", () => {
                     city.innerText = `${data.city.name}, ${data.city.country}`;
                     
                     let now = new Date();
-    
+
                     let date = document.querySelector('.location .date');
                     date.innerText = dateBuilder(now);
                     
@@ -30,18 +30,32 @@ window.addEventListener("load", () => {
                     time.innerText = timeBuilder(now);
                 
                     let temp = document.querySelector('.current .temp');
-                    temp.innerHTML= `${tempFormat(data.list[0].main.temp)}`;
+                    temp.innerHTML = `${tempFormat(data.list[0].main.temp)}`;
                     
                     let defaultTemp = document.querySelector('.current .temp');
                     defaultTemp.innerHTML= `${Math.round(data.list[0].main.temp)}<span>°C</span>`;
 
+                    let icon = document.querySelector('.current .icon');
+                    icon.src = `${api.iconurl}${data.list[0].weather[0].icon}@2x.png`;
+
                     let weather_el = document.querySelector('.current .weather');
                     weather_el.innerText = data.list[0].weather[0].main;
-                
+
                     let hilow = document.querySelector('.current .hi-low');
                     hilow.innerText = `Max:${Math.round(data.list[0].main.temp_max)}°c~Min:${Math.round(data.list[0].main.temp_min)}°c`;
+                    
+
+                    let days = document.querySelector('.content .days');
+                    for(i=0; i<7; i++) {
+                        //days.innerHTML = `<div class="only-day">${dayBuilder(now, i)}</div>`;
+                        days.innerHTML = `<div class="percentage">${data.list[i].pop}</div>`;
+                        days.innerHTML = `<div class="percentage">${api.iconurl}${data.list[i].weather[0].icon}.png</div>`;
+                        //days.innerHTML = `<div class="hi-low">Max:${Math.round(data.list[i].main.temp_max)}°c~Min:${Math.round(data.list[o].main.temp_min)}°c>`
+                    }
                 });
             });
+        } else { 
+            document.querySelector('.alert').innerHTML = "Geolocation is not supported by this browser.";
         }
     }); 
 
@@ -78,6 +92,9 @@ function data (responce, card) {
     
     let date = document.querySelector('.location .date');
     date.innerText = dateBuilder(now);
+ 
+    let day = document.querySelector('.days .only-day');
+    day.innerText = dayBuilder(now);
     
     let time = document.querySelector('.location .time');
     time.innerText = timeBuilder(now);
@@ -108,6 +125,14 @@ function dateBuilder (d) {
 
     return `${day}, ${date} ${month} ${year}`;
 }
+
+function dayBuilder (today, i) {
+    let days = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let day = days[today.getDay() + i];
+
+    return `${day}`;
+}
+
 
 function timeBuilder (d) {
     let hour = d.getHours();

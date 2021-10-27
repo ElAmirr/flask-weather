@@ -49,11 +49,30 @@ form{
   font-weight: bold;
   color: rgba(255,255,255, 0.8);
 }
+
+.is-invalid {
+  background: 0;
+  width: 200px;
+  outline: 0;
+  border: 0;
+  border-bottom: 2px solid rgb(216, 0, 0);
+  margin: 20px 0;
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgba(255,255,255, 0.8);
+}
+
+.invalid-feedback {
+  color:rgb(216, 0, 0);
+}
+
 .submit{
   border: 0;
   border-radius: 16px;
   padding-bottom: 0;
   height: 60px;
+  width: 100%;
   background: #df2359;
   color: white;
   cursor: pointer;
