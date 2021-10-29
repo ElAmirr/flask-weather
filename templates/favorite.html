@@ -1,1 +1,20 @@
 {% extends 'layout.html' %}
+{% block content %}
+<div class="header-container">
+    <header>
+        <input type="text" autocomplete="off" class="search-box" placeholder="Search for a city ...">
+        <input class="celsius-btn" type="button" value="Celsiu">
+        <input class="fahrenheit-btn" type="button" value="Fahrenheit">
+    </header>
+</div>
+<div class="glass">
+    <div class="chart-container">
+        <div class="chart">
+            <canvas id="myChart1"></canvas>
+        </div>
+        <div class="chart">
+            <canvas id="myChart2"></canvas>
+        </div>
+    </div>
+</div>
+{% endblock content %}

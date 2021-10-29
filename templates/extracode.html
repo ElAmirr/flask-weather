@@ -27,4 +27,84 @@
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
 
-    </div> 
+    </div>
+    
+
+
+    let days = document.getElementById("days");
+    var ch ="";
+    
+    for(i=0; i<7; i++) {
+
+
+       
+
+        v =  `<div class="only-day">${dayBuilder(now, i)}</div>`;
+     v1 = `<div class="percentage">${data.list[i].pop}</div>`;
+//    v2    = `<div class="hi-low">Max:${Math.round(data.list[i].main.temp_max)}°c~Min:${Math.round(data.list[o].main.temp_min)}°c>`
+
+
+   ch =  v + v1 + `
+        
+   <img src="${api.iconurl}${data.list[i].weather[0].icon}.png" />                   
+   ` ; 
+
+//                       days.insertAdjacentHTML("beforeend", ch);
+
+
+
+
+
+    }    
+
+
+
+
+    <div class="days6">
+        <div class="only-day">today</div>
+        <div class="precipitation">4%</div>
+        <img class="icon" src="http://openweathermap.org/img/wn/10d.png">
+        <div class="hi-low">23°/14°</div>
+    </div>
+
+    <div class="days7">
+        <div class="only-day">today</div>
+        <div class="precipitation">4%</div>
+        <img class="icon" src="http://openweathermap.org/img/wn/10d.png">
+        <div class="hi-low">23°/14°</div>
+    </div>
+
+
+
+
+
+
+    //day6
+    let day6 = document.querySelector('.days6 .only-day');
+    day6.innerText = dayBuilder(now, i=5);
+
+    let precipitation6 = document.querySelector('.days6 .precipitation');
+    precipitation6.innerText = `${(data.list[120].pop)*100}%`;
+
+    let day_icon6 = document.querySelector('.days6 .icon');
+    day_icon6.src = `${api.iconurl}${data.list[120].weather[0].icon}.png`;
+
+    let day_hilow6 = document.querySelector('.days6 .hi-low');
+    day_hilow6.innerText = `${Math.round(data.list[120].main.temp_max)}°${Math.round(data.list[120].main.temp_min)}°`;
+    
+    //day7
+    let day7 = document.querySelector('.days7 .only-day');
+    day7.innerText = dayBuilder(now, i=6);
+
+    let precipitation7 = document.querySelector('.days7 .precipitation');
+    precipitation7.innerText = `${(data.list[144].pop)*100}%`;
+
+    let day_icon7 = document.querySelector('.days7 .icon');
+    day_icon7.src = `${api.iconurl}${data.list[144].weather[0].icon}.png`;
+
+    let day_hilow7 = document.querySelector('.days7 .hi-low');
+    day_hilow7.innerText = `${Math.round(data.list[144].main.temp_max)}°${Math.round(data.list[144].main.temp_min)}°`;
+
+
+                        
+                        

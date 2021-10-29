@@ -4,7 +4,7 @@
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
   --bg-primary: #23232e;
-  --bg-secondary: #141418;
+  --bg-secondary: 
   --bg-lg: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.4),
@@ -72,11 +72,11 @@ main {
 }
 
 .fa-primary {
-  color: #ff7eee;
+  color: #ffffff;
 }
 
 .fa-secondary {
-  color: #df49a6;
+  color: #000000;
 }
 
 .fa-primary,
@@ -174,21 +174,49 @@ main {
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
   --bg-primary: #23232e;
-  --bg-secondary: #141418;
+  --bg-secondary: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.2)
+  );
+  --bg-lg: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.2)
+  );
 }
 
 .light {
-  --text-primary: #1f1f1f;
-  --text-secondary: #000000;
-  --bg-primary: #ffffff;
-  --bg-secondary: #e4e4e4;
+  --text-primary: #576e75;
+  --text-secondary: #35535c;
+  --bg-primary: #518f94;
+  --bg-secondary: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2)
+  );;
+  --bg-lg: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2)
+  );
+
 }
 
 .solar {
   --text-primary: #576e75;
   --text-secondary: #35535c;
-  --bg-primary: #fdf6e3;
-  --bg-secondary: #f5e5b8;
+  --bg-primary: #dba198;
+  --bg-secondary: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2)
+  );;
+  --bg-lg: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2)
+  );
 }
 
 .theme-icon {

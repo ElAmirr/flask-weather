@@ -30,7 +30,7 @@ body {
   width: 50vh;
   border-radius: 50%;
   position: fixed;
-  z-index: -2;
+  z-index: -3;
   background: var(--bg-lg);
 }
 .circle1 {
@@ -86,9 +86,9 @@ header input {
     padding: 10px;
     border: none;
     outline: none;
-    background-color: var(--bg-lg);
+    background-color: var(--bg-secondary);
     border-radius: 16px;
-    color: #313131;
+    color: var(--text-primary);
     font-size: 1.3vw;
     font-weight: 300;
     transition: 0.2s ease-out;
@@ -96,7 +96,7 @@ header input {
 }
 
 header input:focus {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: var(--bg-primary);
 }
 
 
@@ -122,7 +122,7 @@ header input:focus {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 2;
+    z-index: 3;
     border-radius: 16px;
 }
 
@@ -140,9 +140,16 @@ header input:focus {
 
 }
 
-.mini-card {
+.mini-card1,
+.mini-card2,
+.mini-card3,
+.mini-card4,
+.mini-card5,
+.mini-card6,
+.mini-card7,
+.mini-card8 {
   width: 5vw;
-  height: 10vh;
+  height: 15vh;
   position: relative;
   margin: 30px;
   background: var(--bg-lg);
@@ -169,20 +176,20 @@ header input:focus {
 }
 
 .location .city {
-    color : #426696;
+    color : var(--text-primary);
     font-size: 1.5vw;
     font-weight: 500;
 }
 
 .location .date,
 .location .time {
-    color: #658ec6;
+    color: var(--text-secondary);
     font-size: 1vw;
 }
 
 
 .current .temp {
-    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+    background: var(--bg-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 3vw;
@@ -195,7 +202,7 @@ header input:focus {
 }
 
 .current .weather {
-    color: #658ec6;
+    color: var(--text-secondary);
     font-size: 1.5vw;
     font-weight: 700;
     font-style: italic;
@@ -204,7 +211,7 @@ header input:focus {
 }
 
 .current .hi-low {
-    color: #426696;
+    color: var(--text-secondary);
     font-size: 1.4vw;
     font-weight: 500;
 }
@@ -231,7 +238,7 @@ header input:focus {
   width: auto;
   margin-top: -22px;
   padding: 16px;
-  color:#658ec6;
+  color: var(--bg-primary);
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
@@ -247,7 +254,7 @@ header input:focus {
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: var(--bg-secondery);
 }
 
 /* The dots/bullets/indicators */
@@ -256,14 +263,14 @@ header input:focus {
   height: 15px;
   width: 15px;
   margin: 0 2px;
-  background-color: #bbb;
+  background-color: var(--bg-primary);
   border-radius: 50%;
   display: inline-block;
-  transition: background-color 0.6s ease;
+  transition: var(--transition-speed);
 }
 
 .active, .dot:hover {
-  background-color: #717171;
+  background-color: var(--bg-secondary);
 }
 
 /* Fading animation */
@@ -292,14 +299,28 @@ header input:focus {
   border: 3px solid rgba(255, 255, 255, 0.5);
 }
 
-.chart {
-  width: 45vw;
-  height: 30vh;
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-#myChart{
-display: block;
-box-sizing: border-box;
-height: 346px;
-width: 693px;
+.chart {
+  position: relative;
+  width: 50vw;
+  height: 50vh;
 }
+
+.days1,
+.days2,
+.days3,
+.days4,
+.days5,
+.days6,
+.days7 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

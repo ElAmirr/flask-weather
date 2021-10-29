@@ -37,6 +37,11 @@ form{
   top: 50%;
   transform: translate(-50%,-50%);
 }
+
+label {
+  color: var(--text-primary);
+}
+
 .form-control{
   background: 0;
   width: 200px;
@@ -47,7 +52,7 @@ form{
   padding-bottom: 10px;
   font-size: 18px;
   font-weight: bold;
-  color: rgba(255,255,255, 0.8);
+  color: var(--text-primary);
 }
 
 .is-invalid {
@@ -60,7 +65,7 @@ form{
   padding-bottom: 10px;
   font-size: 18px;
   font-weight: bold;
-  color: rgba(255,255,255, 0.8);
+  color: rgba(158, 41, 41, 0.8);
 }
 
 .invalid-feedback {
@@ -70,11 +75,11 @@ form{
 .submit{
   border: 0;
   border-radius: 16px;
-  padding-bottom: 0;
+  margin-bottom: 10px;
   height: 60px;
   width: 100%;
   background: #df2359;
-  color: white;
+  color: var(--text-primary);
   cursor: pointer;
   transition: all 600ms ease-in-out;
 }
@@ -82,5 +87,6 @@ form{
   background: #C0392B;
 }
 span a{
-  color: rgba(255,255,255, 0.8);
+  color: var(--text-secondary);
 }
+

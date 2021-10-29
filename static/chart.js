@@ -20,29 +20,73 @@ window.addEventListener("load", () => {
                     const d = new Date();
                     let hour = d.getHours();
                     let labels = [];
-                    let dataY = [];
+                    let dataY11 = [];
+                    let dataY12 = [];
+                    let dataY13 = [];
+                    let dataY2 = [];
                     for(i=0; i <= 23; i++) {
-                        dataY.push(apidata.list[i].main.temp); 
-                        labels.push(((hour+i) % 24 + ''));
+                        dataY11.push(apidata.list[i].main.temp);
+                        dataY12.push(apidata.list[i].main.temp_max);
+                        dataY13.push(apidata.list[i].main.temp_min); 
+                        labels.push((hour+i)%24+ 'h');
                     }
-                        console.log(dataY);
+                        console.log(dataY11);
+                        console.log(dataY12);
+
                         console.log(labels);
                         
-                    const ctx = document.querySelector('#myChart').getContext('2d');
+                    const ctx1 = document.querySelector('#myChart1').getContext('2d');
+                    const ctx2 = document.querySelector('#myChart2').getContext('2d');
+
                     let delayed
 
                     //Gradient Fill 
-                    let gradient = ctx.createLinearGradient(0, 0, 0, 400);
-                    gradient.addColorStop(0, "#44a08d");
-                    gradient.addColorStop(1, "#093637");
+                    let gradient = ctx1.createLinearGradient(0, 0, 0, 400);
+                    gradient.addColorStop(0, "#928DAB");
+                    gradient.addColorStop(1, "#1F1C2C");
 
-                    const data = {
+                    const data1 = {
                         labels,
                         datasets: [
                             {
-                                data: dataY,
+                                data: dataY11,
                                 label: "Temperature",
                                 fill: true,
+                                borderColor: "#1F1C2C",
+                                backgroundColor: gradient
+                                
+                            },
+                            {
+                                data: dataY12,
+                                label: "Temperature max",
+                                fill: true, 
+                                borderColor: '#000',
+                                backgroundColor: '#00000000'
+
+                            },
+                            {
+                                data: dataY13,
+                                label: "Temperature min",
+                                fill: true, 
+                                borderColor: '#ffff00',
+                                backgroundColor: '#00000000'
+
+                            },
+                        ],
+                    };
+
+                    for(i=0; i <= 23; i++) {
+                        dataY2.push(apidata.list[i].pop); 
+                    }
+                        console.log(dataY2);
+                        console.log(labels);
+
+                    const data2 = {
+                        labels,
+                        datasets: [
+                            {
+                                data: dataY2,
+                                label: "Precipitation",
                                 backgroundColor: gradient,
                                 borderColor: "#44a08d",
                                 pointBackgroundColor: "#fff",
@@ -50,9 +94,10 @@ window.addEventListener("load", () => {
                             },
                         ],
                     };
-                    const config = {
+
+                    const config1 = {
                         type: "line",
-                        data: data,
+                        data: data1,
                         options: {
                             radius: 0,
                             hitRadius: 30,
@@ -72,9 +117,10 @@ window.addEventListener("load", () => {
                             },
                             scales: {
                                 y: {
+                                    beginAtZero: true,
                                     ticks: {
-                                        callback: function (dataY) {
-                                            return dataY + "°C";
+                                        callback: function (dataY11) {
+                                            return dataY11 + "°C";
                                         },
                                     },
                                 },
@@ -82,10 +128,46 @@ window.addEventListener("load", () => {
                             
                         },
                     };
-                    Chart.defaults.scales.linear.min = 0;
 
-                    const myChart = new Chart(ctx, config);
+                    const config2 = {
+                        type: "bar",
+                        data: data2,
+                        options: {
+                            radius: 0,
+                            hitRadius: 30,
+                            hoverRadius: 0,
+                            responsive: true,
+                            animation: {
+                                onComplete: () => {
+                                  delayed = true;
+                                },
+                                delay: (context) => {
+                                  let delay = 0;
+                                  if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                                    delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                                  }
+                                  return delay;
+                                },
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        callback: function (dataY2) {
+                                            return dataY2 + "ml";
+                                        },
+                                    },
+                                },
+                            },
+                            
+                        },
+                    };
+
+                    const myChart1 = new Chart(ctx1, config1);
+                    const myChart2 = new Chart(ctx2, config2);
+
                 });
             });
         }
     });
+    
